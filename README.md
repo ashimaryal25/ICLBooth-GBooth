@@ -2,7 +2,7 @@
 
 A self-contained photo-booth kiosk for Gettysburg College events. Guests can make an
 AI-generated collectible trading card, print a classic photo-strip collage, or play a
-built-in arcade game — all running offline on the booth computer, driving a DNP dye-sub
+built-in arcade game. The booth uses a DNP dye-sub
 printer and a live camera mirror on a second screen.
 
 <p align="center">
