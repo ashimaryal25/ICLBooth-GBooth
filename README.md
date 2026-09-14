@@ -48,12 +48,8 @@ and a matching background template. Output is structured JSON validated with Zod
 falls back to a deterministic local generator when no OpenAI key is set. The form supports
 speech-to-text and an on-screen keyboard.
 
-The offline card path includes a local Python/scikit-learn trait classifier
-(`ml/trait_classifier.py`, `ml/models/trait_classifier.joblib`). It uses TF-IDF word and
-character n-grams with `LinearSVC` to score 25 booth traits from the guest's typed
-self-description, then feeds those traits into the local card-copy generator. The checked-in
-training/eval data is about 3k examples; the latest benchmark recorded 92% training-split
-accuracy, 76% strict Top-3 accuracy, and 91% human-acceptable Top-3 accuracy.
+The offline card generator is currently under development. The planned local pipeline includes a Python/scikit-learn trait classifier (`ml/trait_classifier.py`, `ml/models/trait_classifier.joblib`) that uses TF-IDF word and character n-grams with `LinearSVC` to score 25 booth traits from a guest’s typed self-description. These traits are then passed to the local card-copy generator to produce the personalized card. The checked-in training and evaluation dataset contains approximately 3,000 examples. The latest benchmark achieved 92% training-split accuracy, 76% strict Top-3 accuracy, and 91% human-acceptable Top-3 accuracy.
+
 
 ### Photo collage
 The classic 2×6 strip flow: three-second countdown capture, plain-colour or custom-framed
@@ -212,15 +208,14 @@ Runtime data (`.booth-storage/`) and `.env.local` stay on the booth and are git-
 
 Everything runs on the booth: the final PNG and metadata are stored locally. When
 `OPENAI_API_KEY` is set, only the typed self-description is sent to OpenAI to generate the
-card identity — no photo leaves the machine. Leave the key unset to run fully offline on the
-local generator.
+card identity — no photo leaves the machine. Development of a local card generator with a trained ML trait classifier is underway, with the goal of making the booth’s functionality fully offline.
 
 ## Credits
 
 - **Original photo-strip booth** — first written by **Chloe** as a standalone HTML/CSS/JS app.
 - **Frame and sticker artwork** — designed by **Chloe**.
 - **Ghost Runner** — arcade game by **Raiyat Haque**, including Level 2, audio,
-  hand-tracking controls, visual instructions, and sensitivity work.
+   visual instructions, and sensitivity work.
 - **System design and implementation** — overall kiosk architecture, React photo-booth port,
   card-generation system, frame-selection and sticker software, print pipeline, and Ghost
   Runner's booth-camera integration — **Ashim Aryal**.
